@@ -38,7 +38,10 @@ android {
 dependencies {
 
     api(libs.androidx.core.ktx)
-    api(libs.junit)
-    api(libs.androidx.junit)
-    api(libs.androidx.espresso.core)
+
+    implementation(project(":presentation"))
+    implementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.junit.ktx)
+    androidTestImplementation(project(":presentation"))
+
 }

@@ -42,4 +42,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.monitor)
+    implementation(libs.androidx.junit.ktx)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
