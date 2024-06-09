@@ -1,6 +1,7 @@
 package com.example.presentation
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import org.junit.Before
 import org.junit.runner.RunWith
 
 import org.junit.Rule
@@ -21,27 +22,28 @@ class MainScenarioTest {
         private const val DEFAULT_REPEAT = "once"
         private const val DEFAULT_VIBRO_IS_ON = false
         private const val DEFAULT_DELETE_AFTER_TRIGGERED = false
+        private const val DEFAULT_HINT = "Text..."
         private const val DEFAULT_DESCRIPTION = ""
     }
+
+    private val mainPage = MainPage()
+    private val settingsPage = SettingsPage()
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
     @Test
     fun test_check_main_page() {
-        val mainPage = MainPage()
 
         mainPage.checkVisibleNow()
-        mainPage.checkListIsEmpty()
+        mainPage.checkListItemCount(0)
     }
 
     @Test
     fun test_add_one_alarm() {
-        val mainPage = MainPage()
 
         mainPage.addAlarm()
         mainPage.checkNotVisibleNow()
 
-        val settingsPage = SettingsPage()
         settingsPage.checkVisibleNow()
 
         settingsPage.checkHours(DEFAULT_HOURS)
@@ -50,6 +52,7 @@ class MainScenarioTest {
         settingsPage.checkRepeatMode(DEFAULT_REPEAT)
         settingsPage.checkVibroIsOn(DEFAULT_VIBRO_IS_ON)
         settingsPage.checkDeleteAfterTriggered(DEFAULT_DELETE_AFTER_TRIGGERED)
+        settingsPage.checkHint(DEFAULT_HINT)
         settingsPage.checkDescription(DEFAULT_DESCRIPTION)
         settingsPage.clickConfirm()
 
@@ -57,6 +60,17 @@ class MainScenarioTest {
         mainPage.checkVisibleNow()
 
         mainPage.checkListItemCount(1)
+        mainPage.checkHours(0, DEFAULT_HOURS)
+        mainPage.checkMinutes(0, DEFAULT_MINUTES)
+        mainPage.checkAlarmIsOn(0, true)
+        mainPage.checkVibroIsOn(0, false)
+        mainPage.checkDays(0, listOf(0, 1, 2, 3, 4))
+    }
+
+    @Test
+    fun change_one_alarm() {
+
+        mainPage.checkVisibleNow()
     }
 
 }

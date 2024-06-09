@@ -4,7 +4,7 @@
 
     <application>
         <activity
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/Theme.GetUp"
             android:name="com.example.presentation.MainActivity"
             android:exported="true">
             <intent-filter>
